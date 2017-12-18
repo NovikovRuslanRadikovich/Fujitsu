@@ -1,0 +1,6 @@
+{
+  "DRIVER": "org.hsqldb.jdbc.JDBCDriver",
+  "CONNECTION_URL": "jdbc:hsqldb:hsql://localhost/mydb",
+  "USERNAME": "SA",
+  "PASSWORD": ""
+}

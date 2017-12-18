@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <artifactId>Novikov</artifactId>
+        <groupId>Ruslan</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>novikov-db</artifactId>
+
+    <packaging>jar</packaging>
+
+
+    <properties>
+        <hsqldb.url>jdbc:hsqldb:hsql://localhost/mydb</hsqldb.url>
+        <hsqldb.user>SA</hsqldb.user>
+        <hsqldb.password></hsqldb.password>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+
+                <configuration>
+                    <url>${hsqldb.url}</url>
+                    <user>${hsqldb.user}</user>
+                    <password>${hsqldb.password}</password>
+                    <locations>
+                        <location>filesystem:src/main/resources/db/migration</location>
+                    </locations>
+
+                    <baselineOnMigrate>true</baselineOnMigrate>
+
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>migrate</goal>
+                        </goals>
+                        <!--<configuration>-->
+                            <!--<url>${hsqldb.url}</url>-->
+                            <!--<user>${hsqldb.user}</user>-->
+                            <!--<password>${hsqldb.password}</password>-->
+                            <!--<locations>-->
+                                <!--<location>filesystem:src/main/resources/db/migration</location>-->
+                            <!--</locations>-->
+
+                        <!--</configuration>-->
+
+                        <!--<dependencies>-->
+                        <!--<dependency>-->
+                        <!--<groupId>org.hsqldb</groupId>-->
+                        <!--<artifactId>hsqldb</artifactId>-->
+                        <!--<version>${hsqldb.version}</version>-->
+                        <!--</dependency>-->
+                        <!--</dependencies>-->
+                    </execution>
+                </executions>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>org.hsqldb</groupId>
+                        <artifactId>hsqldb</artifactId>
+                        <version>${hsqldb.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+
+        </dependency>
+
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+    </dependencies>
+
+
+</project>
